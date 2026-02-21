@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base token layer ─────────────────────────────────────────── */
+@layer base {
+  :root {
+    --bg-page:      #f8fafc;
+    --bg-card:      #ffffff;
+    --bg-surface:   #f1f5f9;
+    --border:       #e2e8f0;
+    --text-primary: #0f172a;
+    --text-muted:   #64748b;
+  }
+  .dark {
+    --bg-page:      #0f172a;
+    --bg-card:      #1e293b;
+    --bg-surface:   #334155;
+    --border:       #334155;
+    --text-primary: #f8fafc;
+    --text-muted:   #94a3b8;
+  }
+  html { @apply antialiased; }
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  * { @apply border-border-color; }
+}
+
+/* ── Reusable component layer ────────────────────────────────── */
+@layer components {
+  .card {
+    @apply rounded-2xl border shadow-sm p-6;
+    background: var(--bg-card);
+    border-color: var(--border);
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl
+           bg-brand-600 text-white font-semibold text-sm
+           hover:bg-brand-700 active:scale-[0.98]
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl
+           font-semibold text-sm border transition-all duration-150 active:scale-[0.98];
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+  .btn-ghost:hover { background: var(--bg-surface); }
+  .input {
+    @apply w-full px-4 py-2.5 rounded-xl border text-sm outline-none
+           focus:ring-2 focus:ring-brand-500 focus:border-transparent
+           transition-all duration-150;
+    background: var(--bg-card);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+  .input::placeholder { color: var(--text-muted); }
+  .label {
+    @apply block text-sm font-medium mb-1.5;
+    color: var(--text-muted);
+  }
+  .skill-tag {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold
+           bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300;
+  }
+  .page-title {
+    @apply text-2xl font-bold tracking-tight;
+    color: var(--text-primary);
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+}
+
+/* ── Utility overrides ──────────────────────────────────────── */
+@layer utilities {
+  .border-border-color { border-color: var(--border); }
+  .text-muted { color: var(--text-muted); }
+  .bg-card { background: var(--bg-card); }
+  .bg-surface { background: var(--bg-surface); }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
